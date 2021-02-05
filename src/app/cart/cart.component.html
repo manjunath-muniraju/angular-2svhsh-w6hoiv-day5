@@ -1,0 +1,13 @@
+<h3>Cart</h3>
+<a (click)="routeTo400()"> 404 Route</a>
+<a (click)="routeTo500()"> 500 Route</a>
+<a (click)="routeToGenericError()"> Error Route</a>
+<p>
+  <a routerLink = "/shipping"> Shipping Prices</a>
+</p>
+
+
+<div *ngFor = "let item of items">
+  <span> {{ item.name }} </span>
+  <span> {{ item.price | currency }} </span>
+</div>
