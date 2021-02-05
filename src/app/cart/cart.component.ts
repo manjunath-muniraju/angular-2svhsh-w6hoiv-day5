@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LOCAL_STORAGE, StorageService } from "ngx-webstorage-service";
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  items = this.cartService.getItems();
+  // items = this.cartService.getItems();
+  items = [];
   checkoutForm = this.formBuilder.group({
     name: ['', Validators.required],
     address: ['', Validators.required]
@@ -19,10 +21,12 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    @Inject(LOCAL_STORAGE) private storage: StorageService
   ) { }
 
   ngOnInit() {
+    this.items = this.storage.get("myCart");
   }
 
   routeTo400(){
