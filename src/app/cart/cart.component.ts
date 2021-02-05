@@ -48,4 +48,10 @@ export class CartComponent implements OnInit {
     this.checkoutForm.reset();
   }
 
+   removeItem(productNumber){
+    this.items.splice(productNumber,1);
+    this.storage.set("myCart", this.items);
+    this.items = this.storage.get("myCart");
+  }
+
 }

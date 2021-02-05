@@ -10,7 +10,7 @@
 <div class= "item" *ngFor = "let item of items; index as productNumber">
   <span> {{ item.name }} </span>
   <span> {{ item.price | currency: "INR" }} </span>
-
+  <button [style]= "'background-color:red'" (click)="removeItem(productNumber)">X</button>
 </div>
 
 <form [formGroup] = "checkoutForm" (ngSubmit) = "onSubmit()">
